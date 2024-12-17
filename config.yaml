@@ -1,0 +1,44 @@
+# Configuración de Nginx Log Monitor
+
+# Ruta del archivo de registro
+LOG_FILE: /var/log/nginx/access.log
+
+# Discord Webhook URLs (separadas por comas para múltiples webhooks)
+# DISCORD_WEBHOOK_URL: https://discord.com/api/webhooks/URL_WEBHOOK
+#   - url1
+#   - url2
+#   - url3
+# etc...
+DISCORD_WEBHOOK_URL: https://discord.com/api/webhooks/URL_WEBHOOK
+
+# Token de IPInfo
+IPINFO_TOKEN: TU_TOKEN
+
+# Filtro de IPs
+IGNORED_IPS:
+#  - 127.0.0.1/32  # Localhost
+  - 192.168.0.x/24  # Conexión privada
+  - IP_PC-FISICO/XX # PC físico
+  - CONEXIÓN_PRIVADA/XX  # Conexión privada
+  - TU_IP_PUBLICA/XX  # Añade tu IP pública aquí
+
+# Dejar WHITELISTED_IPS vacío si desea que revise solo las ips que se añadan, en caso contrario dejarlo []
+# - IP/XX # Modifica IP por la ip que desea que revise.
+WHITELISTED_IPS: []
+
+# Configuración de la supervisión
+MAX_THREADS: 5
+
+# Umbrales de riesgo
+RISK_THRESHOLDS:
+  high_status_codes:
+    - 500
+    - 403
+    - 401
+
+suspicious_user_agents:
+    - python-requests
+    - curl
+    - wget
+    - masscan
+    - nmap
